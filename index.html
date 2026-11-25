@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#21160f">
+  <title>Tumaini Group | Invitation Manager</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">TG</div>
+    <div>
+      <h1>Tumaini Group · Kiboswa</h1>
+      <p>Personalized invitation manager</p>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="controls panel">
+      <div class="section-heading">
+        <span class="eyebrow">MAIL MERGE</span>
+        <h2>Prepare invitations</h2>
+        <p>Enter one guest or import a spreadsheet. Each guest gets a separate invitation.</p>
+      </div>
+
+      <label class="field-label" for="designation">Title / designation</label>
+      <input id="designation" type="text" placeholder="e.g. Dr., Rev., Mr. & Mrs." autocomplete="off">
+
+      <label class="field-label" for="guestName">Attendee name</label>
+      <input id="guestName" type="text" placeholder="Enter the guest's full name" autocomplete="off">
+
+      <div class="button-row">
+        <button id="addGuest" class="btn btn-primary">Add invitation</button>
+        <button id="updateGuest" class="btn btn-secondary" disabled>Update current</button>
+      </div>
+
+      <div class="divider"><span>OR IMPORT A LIST</span></div>
+      <label class="upload-box" for="listFile">
+        <span class="upload-icon">↑</span>
+        <strong>Upload CSV or Excel</strong>
+        <small>Columns supported: Name and Designation (or Title)</small>
+        <input id="listFile" type="file" accept=".csv,.xlsx,.xls">
+      </label>
+      <a class="sample-link" href="attendees-template.csv" download>Download sample CSV template</a>
+
+      <div class="queue-header">
+        <h3>Invitation queue</h3>
+        <span id="guestCount" class="count">0 guests</span>
+      </div>
+      <div id="guestList" class="guest-list">
+        <p class="empty-state">No guests added yet.</p>
+      </div>
+      <div class="button-row">
+        <button id="printAll" class="btn btn-primary" disabled>Print all / Save all as PDF</button>
+        <button id="clearAll" class="btn btn-quiet" disabled>Clear list</button>
+      </div>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="preview-panel">
+      <div class="preview-heading">
+        <div>
+          <span class="eyebrow">LIVE PREVIEW</span>
+          <h2>Invitation preview</h2>
+        </div>
+        <div class="preview-actions">
+          <button id="prevGuest" class="icon-btn" aria-label="Previous invitation" disabled>‹</button>
+          <span id="currentPosition">0 / 0</span>
+          <button id="nextGuest" class="icon-btn" aria-label="Next invitation" disabled>›</button>
+          <button id="printCurrent" class="btn btn-secondary" disabled>Print current</button>
+        </div>
+      </div>
+
+      <div class="poster-stage">
+        <div id="poster" class="poster">
+          <div id="recipient" class="recipient">
+            <span id="previewDesignation"></span>
+            <span id="previewName">Your guest's name will appear here</span>
+          </div>
+          <div id="posterMissing" class="poster-missing">
+            <strong>Upload your final Canva export</strong>
+            <span>Choose the high-resolution PNG or JPG of the finished invitation.</span>
+            <label class="btn btn-primary upload-poster-btn" for="posterFile">Choose poster image</label>
+            <input id="posterFile" type="file" accept="image/png,image/jpeg,image/webp">
+          </div>
+        </div>
+      </div>
+      <div class="preview-footer">
+        <label class="poster-upload-link" for="posterFile">Replace poster image</label>
+        <span>Recommended: export from Canva as PNG at 1920 × 1080.</span>
+      </div>
+      <div class="notice">
+        <strong>Print tip:</strong> Choose “Save as PDF” in your browser's print dialog. For a batch, each guest is placed on a separate landscape page.
+      </div>
+    </section>
+  </main>
+
+  <footer>© Tumaini Group · Kiboswa</footer>
+  <script src="app.js"></script>
+</body>
+</html>
